@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <limits>
 
 class Sample {
@@ -21,25 +21,27 @@ void Sample::read() {
 
 void Sample::write() {
 	for (int i(0); i < size; ++i) {
-		std::cout << p[i];
+		std::cout << p[i] << '\n';
 	}
 }
 
 int Sample::big() {
-	int top = INT_MIN;
-	for (int i(0); i < size; ++i) {
-		top = top > p[i] ? top : p[i];
+	int top = p[0];
+	if (size >= 2) {
+		for (int i(1); i < size; ++i) {
+			top = top > p[i] ? top : p[i];
+		}
 	}
 	return top;
 }
 
 Sample::~Sample() {
-	delete p;
+	delete [] p;
 }
 
 int main() {
 	Sample s(10);
 	s.read();
 	s.write();
-	std::cout << "°¡Àå Å« ¼ö´Â " << s.big() << std::endl;
+	std::cout << "ê°€ìž¥ í° ìˆ˜ëŠ” " << s.big() << std::endl;
 }

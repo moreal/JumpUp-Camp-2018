@@ -1,5 +1,4 @@
-#include <iostream>
-#include <functional>
+﻿#include <iostream>
 
 int main() {
 	int cnt;

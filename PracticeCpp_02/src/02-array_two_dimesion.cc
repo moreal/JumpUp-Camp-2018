@@ -13,7 +13,7 @@ int main() {
 
 	for (int i(0); i < 2; ++i)
 		for (int j(0); j < 3; ++j)
-			std::cout << "Circle [" << i << ',' << j << "]ÀÇ ¸éÀûÀº " << circles[i][j].getArea() << '\n';
+			std::cout << "Circle [" << i << ',' << j << "]ì˜ ë©´ì ì€ " << circles[i][j].getArea() << '\n';
 
 	return 0;
 }
