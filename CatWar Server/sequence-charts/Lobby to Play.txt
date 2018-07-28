@@ -1,0 +1,20 @@
+title Lobby to Play
+
+유저->로비 서버:(1) Request Route Play Server\n   When Press Start Button
+로비 서버->UserDB Server: (2) Check Token Exist (token)
+로비 서버<--UserDB Server: (3) Return Search Result
+note over 로비 서버: If resp.exists && req.ip == resp.ip
+
+note over 로비 서버:There is not empty room, Create room\n        new 플레이 서버 Instance
+로비 서버->플레이 서버: (4) Append User to Play Server
+UserDB Server<-플레이 서버: (5) Request User Data (token)
+UserDB Server-->플레이 서버: (6) Response (ip, username, user_info...)
+// Docker의 의무를 어디까지로 삼아야 하는 가
+플레이 서버->GameDB Server: (7) Append User, (token, ip)
+note over GameDB Server: Insert User Data into This DB\nSet User Location... about game play
+플레이 서버<--GameDB Server: (8) Success Signal
+로비 서버<--플레이 서버: (9) Response User Error
+유저<--로비 서버:(10) Response Result of Route (Play Server Endpoint)
+note over 로비 서버: Else
+유저<--로비 서버:(11) Response Failed: Access Denined
+Dockers Manager->Dockers...: (??) Run Docker Image with args (token)

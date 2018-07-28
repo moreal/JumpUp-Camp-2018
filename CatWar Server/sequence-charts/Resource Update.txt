@@ -1,0 +1,9 @@
+title Resource Update
+
+유저->스토리지 서버: (1) Update Check Request(args: version)
+유저<--스토리지 서버:(2) Need to Update Resource : bool
+
+note right of 유저:If client needs to update
+유저->스토리지 서버:(3) Request Get Files, Resources
+스토리지 서버->k8s Dockers:(4) Route Job to Dockers, k8s
+유저<--k8s Dockers:(5) Transfer File

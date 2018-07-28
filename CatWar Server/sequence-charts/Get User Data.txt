@@ -1,0 +1,9 @@
+title Get User Data
+
+유저->로비 서버: (1) Request Data\n(token, property: [All or Specific])
+로비 서버->DB Server: (2) Check Token Exist (token)
+로비 서버<--DB Server: (3) Return Search Result
+note over 로비 서버: If resp.exists && req.ip == resp.ip
+유저<--로비 서버:(4) Response by req.property
+note over 로비 서버: Else
+유저<--로비 서버:(5) Response Failed: Access Denined

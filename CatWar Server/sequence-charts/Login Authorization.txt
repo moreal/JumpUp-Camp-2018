@@ -1,0 +1,19 @@
+title Login Authorization
+
+유저->프로필 서버: (1) Login Request (id, pw) : Account values
+프로필 서버->Job Queue: (2) Add Job into Job Queue
+note left of Workers: Pop Job from Job Queue (Sync)
+Job Queue->Workers: (3) Get Job from thread pool
+Workers->DB Server:(3) CheckFromDB(id, pw)
+Workers<--DB Server: (4) Response from DB
+
+note over Workers: If the account exists
+
+note over Workers: (5) Create token hash(id+random+salt)
+Workers->DB Server:(6) Save token & request[ip] & Lobby Server
+유저<->Workers:(7) Create Secure Session (ex-ssl)
+
+유저<--Workers:(8) Send token & Lobby Server Endpoint
+note over Workers:Else
+
+유저<--Workers:(9) Login Failed Signal Packet
